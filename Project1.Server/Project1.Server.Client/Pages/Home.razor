@@ -1,0 +1,67 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Todo List!</h1>
+
+<style>
+    /* Optional custom CSS */
+    .centered-text {
+        text-align: center;
+    }
+
+    .wrapper {
+        margin-left: auto; /* Adjust as needed */
+        margin-right: auto; /* Adjust as needed */
+    }
+</style>
+
+    <!-- Wrapper div to add margins -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 centered-text">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Add Your Daily Tasks here</label>
+                <div class="wrapper">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Write the tasks here">
+                    <button class="btn btn-primary" type="button">Add New task</button>
+                </div>
+
+
+
+                    <!-- Sample todo list data with loop -->
+                    @foreach (var todo in TodoList)
+                    {
+                        <div class="input-group mt-2">
+                            <input type="text" class="form-control" value="@todo.TaskName" readonly>
+                            <div class="input-group-append">
+                                <button class="btn btn-warning" type="button">Edit</button>
+                                <button class="btn btn-danger" type="button">Remove</button>
+                                <button class="btn btn-info" type="button">Important!</button>
+                            <button class="btn btn-success" type="button">Completed</button>
+
+
+                            </div>
+                        </div>
+                    }
+                    <!-- End of sample todo list data -->
+                </div>
+            </div>
+    </div>
+</div>
+
+@code {
+    // Sample todo list data
+    List<TodoItem> TodoList = new List<TodoItem>()
+    {
+        new TodoItem { TaskName = "Task 1" },
+        new TodoItem { TaskName = "Task 2" },
+        new TodoItem { TaskName = "Task 3" }
+    };
+
+    // Todo item class
+    public class TodoItem
+    {
+        public string? TaskName { get; set; }
+    }
+}
